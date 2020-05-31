@@ -50,11 +50,12 @@ bool App::verifySignaturePNG()
 void App::readChunksFromDataRaw()
 {
 	using ConstIterator = std::vector<std::byte>::const_iterator;
+	using Byte4 = std::byte;
 
 	// Advance and skip the signature
 	ConstIterator iterator = dataRaw.cbegin() + 8;
 
-	std::byte lengthChunk = *(iterator + 0) | *(iterator + 1) | *(iterator + 2) | *(iterator + 3);
+	Byte4 lengthChunk = *(iterator + 0) | *(iterator + 1) | *(iterator + 2) | *(iterator + 3);
 
 	std::cout << "Length: " << std::to_integer<int>(lengthChunk) << "\n";
 
