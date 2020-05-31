@@ -21,6 +21,8 @@ namespace Mong
 
 		std::vector<std::byte> dataRaw;
 
+		std::vector<Chunk> chunks;
+
 		/**
 		 * The first eight bytes of a PNG file
 		 * always contain the following (decimal)
@@ -30,6 +32,8 @@ namespace Mong
 		 *  correct, false otherwise.
 		 */
 		bool verifySignaturePNG();
+
+		void readChunksFromDataRaw();
 
 	public:
 

@@ -1,6 +1,9 @@
 // Design by Joan Andrés.
 
 #include <iostream>
+#include <cstddef>
+#include <array>
+
 #include "Mong/App.hpp"
 
 using namespace Mong;
@@ -23,10 +26,8 @@ void App::run()
 
 	if (verifySignaturePNG())
 	{
-		std::cout << "Verify\n"; return;
+		readChunksFromDataRaw();
 	}
-
-	std::cout << "Not Verify\n";
 }
 
 bool App::verifySignaturePNG()
@@ -44,4 +45,26 @@ bool App::verifySignaturePNG()
 	}
 
 	return false;
+}
+
+void App::readChunksFromDataRaw()
+{
+	using ConstIterator = std::vector<std::byte>::const_iterator;
+
+	// Advance and skip the signature
+	ConstIterator iterator = dataRaw.cbegin() + 8;
+
+	std::byte lengthChunk = *(iterator + 0) | *(iterator + 1) | *(iterator + 2) | *(iterator + 3);
+
+	std::cout << "Length: " << std::to_integer<int>(lengthChunk) << "\n";
+
+	std::array<std::byte, 4> typeChunk;
+
+	typeChunk[0] = *(iterator + 4);
+	typeChunk[1] = *(iterator + 5);
+	typeChunk[2] = *(iterator + 6);
+	typeChunk[3] = *(iterator + 7);
+
+	for(auto b : typeChunk)
+		std::cout << std::to_integer<char>(b) << "\n";
 }
