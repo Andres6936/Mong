@@ -50,21 +50,29 @@ bool App::verifySignaturePNG()
 
 void App::readChunksFromDataRaw()
 {
-	// Advance and skip the signature
+	// Skip the initial signature of 8 bytes
 	ConstIterator iterator = dataRaw.cbegin() + 8;
 
 	const UInt32 lengthChunk = getLengthChunk(iterator);
 
 	std::cout << "Length: " << lengthChunk << "\n";
 
-	const std::string typeChunk = getTypeChunk(iterator + 4);
+	// Advance the 4 bytes of Chunk Length
+	iterator = std::next(iterator, 4);
+
+	const std::string typeChunk = getTypeChunk(iterator);
 
 	std::cout << "Type: " << typeChunk << "\n";
+
+	// Advance the 4 bytes of Chunk Type
+	iterator = std::next(iterator, 4);
+
+	std::vector<std::byte> dataChunk(iterator, iterator + lengthChunk);
 }
 
 UInt32 App::getLengthChunk(ConstIterator _it)
 {
-	// Read the first 4 bytes
+	// Read the 4 bytes
 	const Byte4 lengthChunk = *(_it + 0) | *(_it + 1) | *(_it + 2) | *(_it + 3);
 
 	return std::to_integer<UInt32>(lengthChunk);
@@ -72,6 +80,7 @@ UInt32 App::getLengthChunk(ConstIterator _it)
 
 std::string App::getTypeChunk(App::ConstIterator _it)
 {
+	// Read the 4 bytes
 	Int8 letter1 = std::to_integer<Int8>(*(_it + 0));
 	Int8 letter2 = std::to_integer<Int8>(*(_it + 1));
 	Int8 letter3 = std::to_integer<Int8>(*(_it + 2));
