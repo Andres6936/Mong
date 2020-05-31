@@ -71,14 +71,17 @@ void App::readChunksFromDataRaw()
 		// Advance the 4 bytes of Chunk Type
 		iterator = std::next(iterator, 4);
 
-		std::vector<std::byte> dataChunk(iterator, iterator + lengthChunk);
+		if (lengthChunk not_eq 0)
+		{
+			std::vector<std::byte> dataChunk(iterator, iterator + lengthChunk);
 
-		// Advance the length of chunk
-		iterator = std::next(iterator, lengthChunk);
+			// Advance the length of chunk
+			iterator = std::next(iterator, lengthChunk);
+		}
 
 		const UInt32 crcChunk = getCyclicRedundancyCheck(iterator);
 
-		std::cout << "CRC:" << crcChunk << "\n";
+		std::cout << "CRC:" << crcChunk << "\n\n";
 
 		// Advance the 4 bytes of CRC Chunk
 		iterator = std::next(iterator, 4);
