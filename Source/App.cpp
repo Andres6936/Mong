@@ -53,28 +53,39 @@ void App::readChunksFromDataRaw()
 	// Skip the initial signature of 8 bytes
 	ConstIterator iterator = dataRaw.cbegin() + 8;
 
-	const UInt32 lengthChunk = getLengthChunk(iterator);
+	bool isEndChunk = false;
 
-	std::cout << "Length: " << lengthChunk << "\n";
+	while (not isEndChunk)
+	{
+		const UInt32 lengthChunk = getLengthChunk(iterator);
 
-	// Advance the 4 bytes of Chunk Length
-	iterator = std::next(iterator, 4);
+		std::cout << "Length: " << lengthChunk << "\n";
 
-	const std::string typeChunk = getTypeChunk(iterator);
+		// Advance the 4 bytes of Chunk Length
+		iterator = std::next(iterator, 4);
 
-	std::cout << "Type: " << typeChunk << "\n";
+		const std::string typeChunk = getTypeChunk(iterator);
 
-	// Advance the 4 bytes of Chunk Type
-	iterator = std::next(iterator, 4);
+		std::cout << "Type: " << typeChunk << "\n";
 
-	std::vector<std::byte> dataChunk(iterator, iterator + lengthChunk);
+		// Advance the 4 bytes of Chunk Type
+		iterator = std::next(iterator, 4);
 
-	// Advance the length of chunk
-	iterator = std::next(iterator, lengthChunk);
+		std::vector<std::byte> dataChunk(iterator, iterator + lengthChunk);
 
-	const UInt32 crcChunk = getCyclicRedundancyCheck(iterator);
+		// Advance the length of chunk
+		iterator = std::next(iterator, lengthChunk);
 
-	std::cout << "CRC:" << crcChunk << "\n";
+		const UInt32 crcChunk = getCyclicRedundancyCheck(iterator);
+
+		std::cout << "CRC:" << crcChunk << "\n";
+
+		// Advance the 4 bytes of CRC Chunk
+		iterator = std::next(iterator, 4);
+
+		// Verify if the actual chunk is IEND,
+		if (typeChunk == "IEND") isEndChunk = true;
+	}
 }
 
 UInt32 App::getLengthChunk(ConstIterator _it)
