@@ -68,6 +68,13 @@ void App::readChunksFromDataRaw()
 	iterator = std::next(iterator, 4);
 
 	std::vector<std::byte> dataChunk(iterator, iterator + lengthChunk);
+
+	// Advance the length of chunk
+	iterator = std::next(iterator, lengthChunk);
+
+	const UInt32 crcChunk = getCyclicRedundancyCheck(iterator);
+
+	std::cout << "CRC:" << crcChunk << "\n";
 }
 
 UInt32 App::getLengthChunk(ConstIterator _it)
@@ -87,4 +94,12 @@ std::string App::getTypeChunk(App::ConstIterator _it)
 	Int8 letter4 = std::to_integer<Int8>(*(_it + 3));
 
 	return { letter1, letter2, letter3, letter4 };
+}
+
+UInt32 App::getCyclicRedundancyCheck(App::ConstIterator _it)
+{
+	// Read the 4 bytes
+	const Byte4 crcChunk = *(_it + 0) | *(_it + 1) | *(_it + 2) | *(_it + 3);
+
+	return std::to_integer<UInt32>(crcChunk);
 }

@@ -45,6 +45,8 @@ namespace Mong
 
 		UInt32 getLengthChunk(ConstIterator _it);
 
+		UInt32 getCyclicRedundancyCheck(ConstIterator _it);
+
 		std::string getTypeChunk(ConstIterator _it);
 
 	public:
