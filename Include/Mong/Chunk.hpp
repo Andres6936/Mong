@@ -16,6 +16,8 @@ namespace Mong
 
 	private:
 
+		// Its a attribute derived.
+		// Equals to data.size();
 		UInt32 length = 0;
 
 		UInt32 cyclicRedundancyCheck = 0;

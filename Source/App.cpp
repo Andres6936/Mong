@@ -71,13 +71,10 @@ void App::readChunksFromDataRaw()
 		// Advance the 4 bytes of Chunk Type
 		iterator = std::next(iterator, 4);
 
-		if (lengthChunk not_eq 0)
-		{
-			std::vector<std::byte> dataChunk(iterator, iterator + lengthChunk);
+		std::vector<std::byte> dataChunk(iterator, iterator + lengthChunk);
 
-			// Advance the length of chunk
-			iterator = std::next(iterator, lengthChunk);
-		}
+		// Advance the length of chunk
+		iterator = std::next(iterator, lengthChunk);
 
 		const UInt32 crcChunk = getCyclicRedundancyCheck(iterator);
 
@@ -85,6 +82,13 @@ void App::readChunksFromDataRaw()
 
 		// Advance the 4 bytes of CRC Chunk
 		iterator = std::next(iterator, 4);
+
+		// Semantic Move, Efficient pass of parameters
+		Chunk chunk(std::move(dataChunk));
+		chunk.setType(typeChunk);
+		chunk.setCyclicRedundancyCheck(crcChunk);
+
+		chunks.push_back(chunk);
 
 		// Verify if the actual chunk is IEND,
 		if (typeChunk == "IEND") isEndChunk = true;
