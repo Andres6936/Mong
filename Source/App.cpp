@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstddef>
 #include <array>
+#include <bitset>
 
 #include "Mong/App.hpp"
 
@@ -49,23 +50,22 @@ bool App::verifySignaturePNG()
 
 void App::readChunksFromDataRaw()
 {
-	using ConstIterator = std::vector<std::byte>::const_iterator;
-	using Byte4 = std::byte;
-
 	// Advance and skip the signature
 	ConstIterator iterator = dataRaw.cbegin() + 8;
 
-	Byte4 lengthChunk = *(iterator + 0) | *(iterator + 1) | *(iterator + 2) | *(iterator + 3);
+	const UInt32 lengthChunk = getLengthChunk(iterator);
 
-	std::cout << "Length: " << std::to_integer<int>(lengthChunk) << "\n";
+	std::cout << "Length: " << lengthChunk << "\n";
 
-	std::array<std::byte, 4> typeChunk;
+	const Byte4 typeChunk = *(iterator + 4) | *(iterator + 5) | *(iterator + 6) | *(iterator + 7);
 
-	typeChunk[0] = *(iterator + 4);
-	typeChunk[1] = *(iterator + 5);
-	typeChunk[2] = *(iterator + 6);
-	typeChunk[3] = *(iterator + 7);
+	std::cout << "Type: " << std::to_integer<UInt32>(typeChunk) << "\n";
+}
 
-	for(auto b : typeChunk)
-		std::cout << std::to_integer<char>(b) << "\n";
+UInt32 App::getLengthChunk(ConstIterator _it)
+{
+	// Read the first 4 bytes
+	const Byte4 lengthChunk = *(_it + 0) | *(_it + 1) | *(_it + 2) | *(_it + 3);
+
+	return std::to_integer<UInt32>(lengthChunk);
 }

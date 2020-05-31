@@ -17,11 +17,19 @@ namespace Mong
 
 	private:
 
+		// Definitions
+
+		using Byte4 = std::byte;
+
+		using ConstIterator = std::vector<std::byte>::const_iterator;
+
+		// Fields
+
 		std::string_view filename;
 
-		std::vector<std::byte> dataRaw;
-
 		std::vector<Chunk> chunks;
+
+		std::vector<std::byte> dataRaw;
 
 		/**
 		 * The first eight bytes of a PNG file
@@ -34,6 +42,10 @@ namespace Mong
 		bool verifySignaturePNG();
 
 		void readChunksFromDataRaw();
+
+		UInt32 getLengthChunk(ConstIterator _it);
+
+
 
 	public:
 
