@@ -22,7 +22,7 @@ namespace Mong
 
 		UInt32 cyclicRedundancyCheck = 0;
 
-		std::string type = 0;
+		std::string type;
 
 		std::vector<std::byte> data;
 
