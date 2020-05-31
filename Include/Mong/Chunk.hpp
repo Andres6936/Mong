@@ -6,6 +6,7 @@
 #include "Definitions.hpp"
 
 #include <vector>
+#include <string>
 
 namespace Mong
 {
@@ -17,13 +18,23 @@ namespace Mong
 
 		UInt32 length = 0;
 
-		UInt32 type = 0;
+		UInt32 cyclicRedundancyCheck = 0;
+
+		std::string type = 0;
 
 		std::vector<std::byte> data;
 
-		UInt32 cyclicRedundancyCheck = 0;
-
 	public:
+
+		// Construct
+
+		Chunk(std::vector<std::byte>&& _data);
+
+		// Setters
+
+		void setType(const std::string& _type);
+
+		void setCyclicRedundancyCheck(UInt32 _cyclicRedundancyCheck);
 
 	};
 
