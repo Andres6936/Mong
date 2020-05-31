@@ -10,6 +10,8 @@ namespace Mong
 
 	using UInt32 = std::uint32_t;
 
+	using Int8 = std::int8_t;
+
 }
 
 #endif //MONG_COMMON_HPP

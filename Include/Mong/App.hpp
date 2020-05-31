@@ -45,7 +45,7 @@ namespace Mong
 
 		UInt32 getLengthChunk(ConstIterator _it);
 
-
+		std::string getTypeChunk(ConstIterator _it);
 
 	public:
 

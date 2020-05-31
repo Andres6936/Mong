@@ -57,9 +57,9 @@ void App::readChunksFromDataRaw()
 
 	std::cout << "Length: " << lengthChunk << "\n";
 
-	const Byte4 typeChunk = *(iterator + 4) | *(iterator + 5) | *(iterator + 6) | *(iterator + 7);
+	const std::string typeChunk = getTypeChunk(iterator + 4);
 
-	std::cout << "Type: " << std::to_integer<UInt32>(typeChunk) << "\n";
+	std::cout << "Type: " << typeChunk << "\n";
 }
 
 UInt32 App::getLengthChunk(ConstIterator _it)
@@ -68,4 +68,14 @@ UInt32 App::getLengthChunk(ConstIterator _it)
 	const Byte4 lengthChunk = *(_it + 0) | *(_it + 1) | *(_it + 2) | *(_it + 3);
 
 	return std::to_integer<UInt32>(lengthChunk);
+}
+
+std::string App::getTypeChunk(App::ConstIterator _it)
+{
+	Int8 letter1 = std::to_integer<Int8>(*(_it + 0));
+	Int8 letter2 = std::to_integer<Int8>(*(_it + 1));
+	Int8 letter3 = std::to_integer<Int8>(*(_it + 2));
+	Int8 letter4 = std::to_integer<Int8>(*(_it + 3));
+
+	return { letter1, letter2, letter3, letter4 };
 }
