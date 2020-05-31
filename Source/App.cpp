@@ -83,9 +83,11 @@ void App::readChunksFromDataRaw()
 		// Advance the 4 bytes of CRC Chunk
 		iterator = std::next(iterator, 4);
 
-		// Semantic Move, Efficient pass of parameters
-		Chunk chunk(std::move(dataChunk));
+		Chunk chunk;
+
+		chunk.setLength(lengthChunk);
 		chunk.setType(typeChunk);
+		chunk.setData(dataChunk);
 		chunk.setCyclicRedundancyCheck(crcChunk);
 
 		chunks.push_back(chunk);

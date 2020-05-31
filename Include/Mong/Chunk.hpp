@@ -28,11 +28,11 @@ namespace Mong
 
 	public:
 
-		// Construct
-
-		Chunk(std::vector<std::byte>&& _data);
-
 		// Setters
+
+		void setLength(UInt32 _length);
+
+		void setData(const std::vector<std::byte>& _data);
 
 		void setType(const std::string& _type);
 
