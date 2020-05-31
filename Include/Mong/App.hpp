@@ -5,6 +5,8 @@
 
 #include <Cup/Properties/Readable.h>
 
+#include "Chunk.hpp"
+
 namespace Mong
 {
 
