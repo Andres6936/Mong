@@ -1,7 +1,8 @@
-#include <iostream>
+#include "Mong/App.hpp"
 
-int main()
+using namespace Mong;
+
+int main(int argc, char* argv[])
 {
-	std::cout << "Hello, World!" << std::endl;
-	return 0;
+	App(argv[1]).run();
 }
