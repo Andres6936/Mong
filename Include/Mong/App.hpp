@@ -19,6 +19,16 @@ namespace Mong
 
 		std::vector<std::byte> dataRaw;
 
+		/**
+		 * The first eight bytes of a PNG file
+		 * always contain the following (decimal)
+		 * values: 137 80 78 71 13 10 26 10
+		 *
+		 * @return True if the signature is
+		 *  correct, false otherwise.
+		 */
+		bool verifySignaturePNG();
+
 	public:
 
 		App(std::string_view _filename);
