@@ -78,7 +78,7 @@ void App::readChunksFromDataRaw()
 
 		const UInt32 crcChunk = getCyclicRedundancyCheck(iterator);
 
-		std::cout << "CRC:" << crcChunk << "\n\n";
+		std::cout << "CRC:" << crcChunk << "\n";
 
 		// Advance the 4 bytes of CRC Chunk
 		iterator = std::next(iterator, 4);
@@ -90,8 +90,11 @@ void App::readChunksFromDataRaw()
 		chunk.setData(dataChunk);
 		chunk.setCyclicRedundancyCheck(crcChunk);
 		chunk.determineProperties();
+		chunk.printProperties();
 
 		chunks.push_back(chunk);
+
+		std::cout << "\n\n";
 
 		// Verify if the actual chunk is IEND,
 		if (typeChunk == "IEND") isEndChunk = true;

@@ -1,6 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
 #include <Mong/Chunk.hpp>
+#include <iostream>
 
 using namespace Mong;
 
@@ -41,5 +42,13 @@ void Chunk::determineProperties()
 	// Safe-to-copy bit: bit 5 of fourth byte
 	// 0 (uppercase) = unsafe to copy, 1 (lowercase) = safe to copy
 	if (std::isupper(type[3])) safeCopy = false;
+}
+
+void Chunk::printProperties()
+{
+	std::cout << "Ancillary: " << ancillary << "\n";
+	std::cout << "Private: " << privateChunk << "\n";
+	std::cout << "Reserved: " << reserved << "\n";
+	std::cout << "Safe to Copy: " << safeCopy << "\n";
 }
 

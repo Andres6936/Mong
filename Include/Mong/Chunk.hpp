@@ -80,6 +80,8 @@ namespace Mong
 
 		void setCyclicRedundancyCheck(UInt32 _cyclicRedundancyCheck);
 
+		void printProperties();
+
 	};
 
 }
