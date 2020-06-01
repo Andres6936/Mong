@@ -30,6 +30,8 @@ namespace Mong
 
 		UInt32 readUInt32From4Bytes(ConstIterator _it);
 
+		UInt8 readUInt8FromByte(ConstIterator _it);
+
 	};
 
 }

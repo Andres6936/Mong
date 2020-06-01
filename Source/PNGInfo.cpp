@@ -9,7 +9,36 @@ using namespace Mong;
 
 PNGInfo::PNGInfo(const Chunk& _chunk) : IHDR(_chunk)
 {
+	// Iterator for read the data of chunk
+	ConstIterator it = IHDR.getIterator();
 
+	width = readUInt32From4Bytes(it);
+	// Advance the iterator 4 bytes
+	it = std::next(it, 4);
+
+	height = readUInt32From4Bytes(it);
+	// Advance the iterator 4 bytes
+	it = std::next(it, 4);
+
+	bitDepth = readUInt8FromByte(it);
+	// Advance the iterator 1 byte
+	it = std::next(it, 1);
+
+	colorType = readUInt8FromByte(it);
+	// Advance the iterator 1 byte
+	it = std::next(it, 1);
+
+	compressionMethod = readUInt8FromByte(it);
+	// Advance the iterator 1 byte
+	it = std::next(it, 1);
+
+	filterMethod = readUInt8FromByte(it);
+	// Advance the iterator 1 byte
+	it = std::next(it, 1);
+
+	interlaceMethod = readUInt8FromByte(it);
+
+	// 13 Bytes in total reads.
 }
 
 UInt32 PNGInfo::readUInt32From4Bytes(ConstIterator _it)
@@ -36,4 +65,9 @@ UInt32 PNGInfo::readUInt32From4Bytes(ConstIterator _it)
 	}
 
 	return result;
+}
+
+UInt8 PNGInfo::readUInt8FromByte(ConstIterator _it)
+{
+	return std::to_integer<UInt8>(*_it);
 }

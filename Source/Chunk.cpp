@@ -52,3 +52,8 @@ void Chunk::printProperties()
 	std::cout << "Safe to Copy: " << safeCopy << "\n";
 }
 
+ConstIterator Chunk::getIterator() const
+{
+	return data.cbegin();
+}
+

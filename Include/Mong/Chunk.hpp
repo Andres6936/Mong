@@ -70,6 +70,10 @@ namespace Mong
 
 		void determineProperties();
 
+		// Getter
+
+		ConstIterator getIterator() const;
+
 		// Setters
 
 		void setLength(UInt32 _length);
