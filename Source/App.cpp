@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstddef>
 #include <bitset>
+#include <bit>
 
 #include "Mong/App.hpp"
 
@@ -128,10 +129,17 @@ UInt32 App::readUInt32From4Bytes(App::ConstIterator _it)
 	// Prepare the space for save the 4 bytes
 	UInt32 result = 0;
 
-	result += byte1 << 24;
-	result += byte2 << 16;
-	result += byte3 << 8;
-	result += byte4 << 0;
+	if constexpr (std::endian::native == std::endian::little)
+	{
+		result += byte1 << 24;
+		result += byte2 << 16;
+		result += byte3 << 8;
+		result += byte4 << 0;
+	}
+	else if constexpr (std::endian::native == std::endian::big)
+	{
+		// Implement Big Endian
+	}
 
 	return result;
 }
