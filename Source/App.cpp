@@ -6,6 +6,7 @@
 #include <bit>
 
 #include "Mong/App.hpp"
+#include "Mong/PNGInfo.hpp"
 
 using namespace Mong;
 
