@@ -43,6 +43,18 @@ namespace Mong
 
 		void readChunksFromDataRaw();
 
+		/**
+		 * Read 4 bytes of 8 bits from a iterator,
+		 * and save in a variable of 32 Bits.
+		 *
+		 * Design for read the length and cyclic
+		 * redundancy check of chunk.
+		 *
+		 * @param _it Iterator to a container with bytes .
+		 * @return The result of package 4 bytes into variable.
+		 */
+		UInt32 readUInt32From4Bytes(ConstIterator _it);
+
 		UInt32 getLengthChunk(ConstIterator _it);
 
 		UInt32 getCyclicRedundancyCheck(ConstIterator _it);

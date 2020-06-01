@@ -99,21 +99,7 @@ void App::readChunksFromDataRaw()
 
 UInt32 App::getLengthChunk(ConstIterator _it)
 {
-	// Read the 4 bytes
-	UInt8 byte1 = std::to_integer<UInt8>(*(_it + 0));
-	UInt8 byte2 = std::to_integer<UInt8>(*(_it + 1));
-	UInt8 byte3 = std::to_integer<UInt8>(*(_it + 2));
-	UInt8 byte4 = std::to_integer<UInt8>(*(_it + 3));
-
-	// Prepare the space for save the 4 bytes
-	UInt32 length = 0;
-
-	length += byte1 << 24;
-	length += byte2 << 16;
-	length += byte3 << 8;
-	length += byte4 << 0;
-
-	return length;
+	return readUInt32From4Bytes(_it);
 }
 
 std::string App::getTypeChunk(App::ConstIterator _it)
@@ -129,8 +115,24 @@ std::string App::getTypeChunk(App::ConstIterator _it)
 
 UInt32 App::getCyclicRedundancyCheck(App::ConstIterator _it)
 {
-	// Read the 4 bytes
-	const Byte4 crcChunk = *(_it + 0) | *(_it + 1) | *(_it + 2) | *(_it + 3);
+	return readUInt32From4Bytes(_it);
+}
 
-	return std::to_integer<UInt32>(crcChunk);
+UInt32 App::readUInt32From4Bytes(App::ConstIterator _it)
+{
+	// Read the 4 bytes
+	UInt8 byte1 = std::to_integer<UInt8>(*(_it + 0));
+	UInt8 byte2 = std::to_integer<UInt8>(*(_it + 1));
+	UInt8 byte3 = std::to_integer<UInt8>(*(_it + 2));
+	UInt8 byte4 = std::to_integer<UInt8>(*(_it + 3));
+
+	// Prepare the space for save the 4 bytes
+	UInt32 result = 0;
+
+	result += byte1 << 24;
+	result += byte2 << 16;
+	result += byte3 << 8;
+	result += byte4 << 0;
+
+	return result;
 }
