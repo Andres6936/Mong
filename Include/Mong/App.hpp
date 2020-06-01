@@ -37,6 +37,8 @@ namespace Mong
 
 		void readChunksFromDataRaw();
 
+		void readImageHeader();
+
 		/**
 		 * Read 4 bytes of 8 bits from a iterator,
 		 * and save in a variable of 32 Bits.

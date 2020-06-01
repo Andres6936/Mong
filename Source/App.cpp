@@ -30,6 +30,8 @@ void App::run()
 	{
 		readChunksFromDataRaw();
 	}
+
+	readImageHeader();
 }
 
 bool App::verifySignaturePNG()
@@ -147,4 +149,9 @@ UInt32 App::readUInt32From4Bytes(ConstIterator _it)
 	}
 
 	return result;
+}
+
+void App::readImageHeader()
+{
+	PNGInfo info(chunks.at(0));
 }
