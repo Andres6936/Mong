@@ -19,8 +19,6 @@ namespace Mong
 
 		// Definitions
 
-		using Byte4 = std::byte;
-
 		using ConstIterator = std::vector<std::byte>::const_iterator;
 
 		// Fields

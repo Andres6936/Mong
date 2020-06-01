@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <cstddef>
-#include <array>
 #include <bitset>
 
 #include "Mong/App.hpp"
