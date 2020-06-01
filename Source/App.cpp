@@ -105,6 +105,7 @@ UInt32 App::getLengthChunk(ConstIterator _it)
 	UInt8 byte3 = std::to_integer<UInt8>(*(_it + 2));
 	UInt8 byte4 = std::to_integer<UInt8>(*(_it + 3));
 
+	// Prepare the space for save the 4 bytes
 	UInt32 length = 0;
 
 	length += byte1 << 24;
