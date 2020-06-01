@@ -28,6 +28,8 @@ namespace Mong
 
 		PNGInfo(const Chunk& _chunk);
 
+		UInt32 readUInt32From4Bytes(ConstIterator _it);
+
 	};
 
 }

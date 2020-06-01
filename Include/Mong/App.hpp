@@ -17,10 +17,6 @@ namespace Mong
 
 	private:
 
-		// Definitions
-
-		using ConstIterator = std::vector<std::byte>::const_iterator;
-
 		// Fields
 
 		std::string_view filename;

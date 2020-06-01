@@ -107,7 +107,7 @@ UInt32 App::getLengthChunk(ConstIterator _it)
 	return readUInt32From4Bytes(_it);
 }
 
-std::string App::getTypeChunk(App::ConstIterator _it)
+std::string App::getTypeChunk(ConstIterator _it)
 {
 	// Read the 4 bytes
 	Int8 letter1 = std::to_integer<Int8>(*(_it + 0));
@@ -118,12 +118,12 @@ std::string App::getTypeChunk(App::ConstIterator _it)
 	return { letter1, letter2, letter3, letter4 };
 }
 
-UInt32 App::getCyclicRedundancyCheck(App::ConstIterator _it)
+UInt32 App::getCyclicRedundancyCheck(ConstIterator _it)
 {
 	return readUInt32From4Bytes(_it);
 }
 
-UInt32 App::readUInt32From4Bytes(App::ConstIterator _it)
+UInt32 App::readUInt32From4Bytes(ConstIterator _it)
 {
 	// Read the 4 bytes
 	UInt8 byte1 = std::to_integer<UInt8>(*(_it + 0));

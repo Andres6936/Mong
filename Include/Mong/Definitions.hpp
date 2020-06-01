@@ -4,6 +4,7 @@
 #define MONG_COMMON_HPP
 
 #include <cstdint>
+#include <vector>
 
 namespace Mong
 {
@@ -13,6 +14,8 @@ namespace Mong
 	using UInt8 = std::uint8_t;
 
 	using Int8 = std::int8_t;
+
+	using ConstIterator = std::vector<std::byte>::const_iterator;
 
 }
 
