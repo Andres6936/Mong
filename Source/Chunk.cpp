@@ -24,3 +24,22 @@ void Mong::Chunk::setCyclicRedundancyCheck(UInt32 _cyclicRedundancyCheck)
 	cyclicRedundancyCheck = _cyclicRedundancyCheck;
 }
 
+void Chunk::determineProperties()
+{
+	// Ancillary bit: bit 5 of first byte
+	// 0 (uppercase) = critical, 1 (lowercase) = ancillary.
+	if (std::isupper(type[0])) ancillary = false;
+
+	// Private bit: bit 5 of second byte
+	// 0 (uppercase) = public, 1 (lowercase) = private.
+	if (std::isupper(type[1])) privateChunk = false;
+
+	// Reserved bit: bit 5 of third byte
+	// Must be 0 (uppercase) in files conforming to this version of PNG.
+	if (std::isupper(type[2])) reserved = false;
+
+	// Safe-to-copy bit: bit 5 of fourth byte
+	// 0 (uppercase) = unsafe to copy, 1 (lowercase) = safe to copy
+	if (std::isupper(type[3])) safeCopy = false;
+}
+

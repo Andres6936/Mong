@@ -89,6 +89,7 @@ void App::readChunksFromDataRaw()
 		chunk.setType(typeChunk);
 		chunk.setData(dataChunk);
 		chunk.setCyclicRedundancyCheck(crcChunk);
+		chunk.determineProperties();
 
 		chunks.push_back(chunk);
 
