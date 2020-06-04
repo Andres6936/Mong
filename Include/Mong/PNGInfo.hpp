@@ -48,6 +48,18 @@ namespace Mong
 		 */
 		UInt8 colorType = 0;
 
+		/**
+		 * Compression method indicates the method used to
+		 * compress the image data. At present, only compression
+		 * method 0 (deflate/inflate compression with a sliding
+		 * window of at most 32768 bytes) is defined. All standard
+		 * PNG images must be compressed with this scheme.
+		 * The compression method field is provided for possible
+		 * future expansion or proprietary variants.
+		 *
+		 * @note Decoders must check this byte and report an error
+		 * if it holds an unrecognized code.
+		 */
 		UInt8 compressionMethod = 0;
 		UInt8 filterMethod = 0;
 		UInt8 interlaceMethod = 0;
