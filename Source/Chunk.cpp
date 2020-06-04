@@ -59,16 +59,40 @@ ConstIterator Chunk::getIterator() const
 
 bool Chunk::verifyCyclicRedundancyCheck(const CRC& _crc) const
 {
-	std::vector<std::byte> buffer;
+	// The four parts of a chunk are:
 
+	// 1. (4 Bytes) length field.
+	// 2. (4 Bytes) chunk name.
+	// 3. (Length) data.
+	// 4. (4 Bytes) checksum Cyclic Redundancy Check.
+
+	// The checksum is created from the chunk name
+	// field and the data, therefore not including
+	// the length field and the checksum.
+
+	// As we divided the chunk, is necessary create a new
+	// struct that store the data and chunk name (aka. type)
+
+	std::vector<std::byte> stream;
+
+	// Store first the name chunk (aka. type)
+	// Precondition: the type have a length of 4 characters (bytes)
+	// Post-condition: the buffer have a length of 4 bytes
 	for(const auto letter : type)
 	{
-		buffer.push_back(std::byte(letter));
+		stream.push_back(std::byte(letter));
 	}
 
-	buffer.insert(buffer.end(), data.begin(), data.end());
+	// In this case, already have the 4 bytes of type, now is
+	// necessary store the data
+	// Begin say a stream that the news information are stored
+	// at end of this (the stream) and that begin fill from the
+	// start of data to end data.
 
-	const UInt32 hash = _crc.getCyclicRedundancyCheck(buffer);
+	// In resume: copy the information of data to end of stream
+	stream.insert(stream.end(), data.begin(), data.end());
+
+	const UInt32 hash = _crc.getCyclicRedundancyCheck(stream);
 
 	if (cyclicRedundancyCheck == hash)
 	{

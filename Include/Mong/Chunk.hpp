@@ -69,6 +69,16 @@ namespace Mong
 
 		// Methods
 
+		/**
+		 * Each chunk in a PNG image is verified for corrupted
+		 * data using a CRC32 checksum, where CRC stands for
+		 * Cyclic Redundancy Checksum.
+		 *
+		 * @param _crc Struct with the table cyclic redundancy
+		 *  check constructed (Better Performance).
+		 *
+		 * @return True if the CRC is correct, false otherwise.
+		 */
 		bool verifyCyclicRedundancyCheck(const CRC& _crc) const;
 
 		void determineProperties();
