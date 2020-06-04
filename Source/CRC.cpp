@@ -9,24 +9,26 @@ using namespace Mong;
 
 CRC::CRC()
 {
-	for (int i = 0; i < table.size(); ++i)
+	for (int n = 0; n < table.size(); ++n)
 	{
-		UInt32 c = i << 24;
+		UInt32 c = n;
 
-		for (int j = 0; j < 8; ++j)
+		for (int k = 0; k < 8; ++k)
 		{
-			if (c bitand 0x80'00'00'00)
+			if (c bitand 1)
 			{
-				c = (c << 1) xor 0x04'C1'1D'B7;
+				c = (c >> 1) xor 0xEDB88320;
 			}
 			else
 			{
-				c = c << 1;
+				c = (c >> 1) xor 0;
 			}
 		}
 
-		table[i] = c;
+		table[n] = c;
 	}
+
+	verifyInvariants();
 }
 
 void CRC::showTable()
@@ -49,8 +51,23 @@ UInt32 CRC::getCyclicRedundancyCheck(const std::vector<std::byte>& _buffer) cons
 	{
 		UInt8 byte = std::to_integer<UInt8>(_buffer.at(n));
 
-		c = (c << 8) xor table.at(((c >> 24) xor byte) bitand 255);
+		c = table.at((c xor byte) bitand 0xFF) xor (c >> 8);
 	}
 
-	return c;
+	return c xor 0xFF'FF'FF'FF;
+}
+
+bool CRC::verifyInvariants() const
+{
+	// 32 Bytes of Zeros
+
+	std::vector<std::byte> buffer;
+
+	buffer.push_back(std::byte('a'));
+
+	UInt32 bytesZeros = getCyclicRedundancyCheck(buffer);
+
+	std::cout << std::hex << bytesZeros << "\n";
+
+	return false;
 }

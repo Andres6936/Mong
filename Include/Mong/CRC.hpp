@@ -24,6 +24,10 @@ namespace Mong
 
 		CRC();
 
+		// Methods Invariant
+
+		bool verifyInvariants() const;
+
 		// Methods
 
 		UInt32 getCyclicRedundancyCheck(const std::vector<std::byte>& _buffer) const;
