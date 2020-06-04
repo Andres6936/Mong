@@ -9,6 +9,13 @@ using namespace Mong;
 
 CRC::CRC()
 {
+	// The following sample code represents a practical
+	// implementation of the CRC (Cyclic Redundancy Check)
+	// employed in PNG chunks.
+
+	// See also ISO 3309 [ISO-3309] or ITU-T V.42 [ITU-T-V42]
+	// for a formal specification.
+
 	for (int n = 0; n < table.size(); ++n)
 	{
 		UInt32 c = n;
