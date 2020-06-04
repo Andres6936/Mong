@@ -34,7 +34,11 @@ void App::run()
 
 	if (verifyCRCForAllChunks())
 	{
-		std::cout << "All Chunk with Hash Correct.\n";
+		std::cout << "All Chunk with Cyclic Redundancy Check (CRC) Correct.\n";
+	}
+	else
+	{
+		std::cout << "Error with Cyclic Redundancy Check (CRC).\n";
 	}
 
 	readImageHeader();
@@ -192,8 +196,10 @@ void App::readImageHeader()
 	{
 		std::cout << "Yes, variant satisfied.\n";
 	}
-
-	std::cout << "No, variant unsatisfied.\n";
+	else
+	{
+		std::cout << "No, variant unsatisfied.\n";
+	}
 }
 
 bool App::verifyCRCForAllChunks()
