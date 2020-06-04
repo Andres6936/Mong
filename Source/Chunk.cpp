@@ -57,3 +57,16 @@ ConstIterator Chunk::getIterator() const
 	return data.cbegin();
 }
 
+bool Chunk::verifyCyclicRedundancyCheck(const CRC& _crc) const
+{
+	const UInt64 hash = _crc.getCyclicRedundancyCheck(data);
+
+	if (cyclicRedundancyCheck == hash)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}

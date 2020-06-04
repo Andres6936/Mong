@@ -41,11 +41,11 @@ void CRC::showTable()
 	std::cout << "\n\n";
 }
 
-UInt64 CRC::getCyclicRedundancyCheck(const std::vector<std::byte>& _buffer)
+UInt64 CRC::getCyclicRedundancyCheck(const std::vector<std::byte>& _buffer) const
 {
 	UInt64 c = static_cast<UInt64>(0xFF'FF'FF'FF);
 
-	for (int n = 0; n < table.size(); ++n)
+	for (int n = 0; n < _buffer.size(); ++n)
 	{
 		UInt8 byte = std::to_integer<UInt8>(_buffer.at(n));
 

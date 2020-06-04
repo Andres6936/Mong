@@ -26,7 +26,7 @@ namespace Mong
 
 		// Methods
 
-		UInt64 getCyclicRedundancyCheck(const std::vector<std::byte>& _buffer);
+		UInt64 getCyclicRedundancyCheck(const std::vector<std::byte>& _buffer) const;
 
 		void showTable();
 

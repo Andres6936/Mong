@@ -4,6 +4,7 @@
 #define MONG_CHUNK_HPP
 
 #include "Definitions.hpp"
+#include "CRC.hpp"
 
 #include <vector>
 #include <string>
@@ -67,6 +68,8 @@ namespace Mong
 	public:
 
 		// Methods
+
+		bool verifyCyclicRedundancyCheck(const CRC& _crc) const;
 
 		void determineProperties();
 

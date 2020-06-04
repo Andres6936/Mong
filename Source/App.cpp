@@ -32,6 +32,11 @@ void App::run()
 		readChunksFromDataRaw();
 	}
 
+	if (verifyCRCForAllChunks())
+	{
+		std::cout << "All Chunk with Hash Correct.\n";
+	}
+
 	readImageHeader();
 }
 
@@ -189,4 +194,23 @@ void App::readImageHeader()
 	}
 
 	std::cout << "No, variant unsatisfied.\n";
+}
+
+bool App::verifyCRCForAllChunks()
+{
+	CRC crc;
+
+	for (const auto& chunk : chunks)
+	{
+		if (chunk.verifyCyclicRedundancyCheck(crc))
+		{
+			continue;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	return true;
 }
