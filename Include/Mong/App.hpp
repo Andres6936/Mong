@@ -21,6 +21,10 @@ namespace Mong
 
 		std::string_view filename;
 
+		/**
+		 * Post-condition: The index 0 is the IHDR Chunk
+		 * and the last element is the IEND Chunk.
+		 */
 		std::vector<Chunk> chunks;
 
 		std::vector<std::byte> dataRaw;
