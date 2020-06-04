@@ -34,8 +34,6 @@ CRC::CRC()
 
 		table[n] = c;
 	}
-
-	verifyInvariants();
 }
 
 void CRC::showTable()
