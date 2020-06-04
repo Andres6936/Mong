@@ -43,14 +43,14 @@ void CRC::showTable()
 
 UInt32 CRC::getCyclicRedundancyCheck(const std::vector<std::byte>& _buffer) const
 {
-	UInt32 c = static_cast<UInt32>(0xFF'FF'FF'FF);
+	UInt32 c = 0xFF'FF'FF'FF;
 
 	for (int n = 0; n < _buffer.size(); ++n)
 	{
 		UInt8 byte = std::to_integer<UInt8>(_buffer.at(n));
 
-		c = table.at((c xor byte) bitand 0xFF) xor (c >> 8);
+		c = (c << 8) xor table.at(((c >> 24) xor byte) bitand 255);
 	}
 
-	return c xor static_cast<UInt32>(0xFF'FF'FF'FF);
+	return c;
 }
