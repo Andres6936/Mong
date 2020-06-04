@@ -11,7 +11,7 @@ CRC::CRC()
 {
 	for (int n = 0; n < table.size(); ++n)
 	{
-		UInt64 c = static_cast<UInt64>(n);
+		UInt32 c = static_cast<UInt32>(n);
 
 		for (int k = 0; k < 8; ++k)
 		{
@@ -41,9 +41,9 @@ void CRC::showTable()
 	std::cout << "\n\n";
 }
 
-UInt64 CRC::getCyclicRedundancyCheck(const std::vector<std::byte>& _buffer) const
+UInt32 CRC::getCyclicRedundancyCheck(const std::vector<std::byte>& _buffer) const
 {
-	UInt64 c = static_cast<UInt64>(0xFF'FF'FF'FF);
+	UInt32 c = static_cast<UInt32>(0xFF'FF'FF'FF);
 
 	for (int n = 0; n < _buffer.size(); ++n)
 	{
@@ -52,5 +52,5 @@ UInt64 CRC::getCyclicRedundancyCheck(const std::vector<std::byte>& _buffer) cons
 		c = table.at((c xor byte) bitand 0xFF) xor (c >> 8);
 	}
 
-	return c xor static_cast<UInt64>(0xFF'FF'FF'FF);
+	return c xor static_cast<UInt32>(0xFF'FF'FF'FF);
 }

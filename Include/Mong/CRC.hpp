@@ -16,7 +16,7 @@ namespace Mong
 
 	private:
 
-		std::array<UInt64, 256> table;
+		std::array<UInt32, 256> table;
 
 	public:
 
@@ -26,7 +26,7 @@ namespace Mong
 
 		// Methods
 
-		UInt64 getCyclicRedundancyCheck(const std::vector<std::byte>& _buffer) const;
+		UInt32 getCyclicRedundancyCheck(const std::vector<std::byte>& _buffer) const;
 
 		void showTable();
 
