@@ -5,6 +5,7 @@
 #include <bitset>
 #include <bit>
 
+#include "Mong/CRC.hpp"
 #include "Mong/App.hpp"
 #include "Mong/Information.hpp"
 

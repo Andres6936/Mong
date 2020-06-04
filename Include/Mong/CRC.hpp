@@ -4,6 +4,8 @@
 #define MONG_CRC_HPP
 
 #include <array>
+#include <vector>
+
 #include "Definitions.hpp"
 
 namespace Mong
@@ -23,6 +25,8 @@ namespace Mong
 		CRC();
 
 		// Methods
+
+		UInt64 getCyclicRedundancyCheck(const std::vector<std::byte>& _buffer);
 
 		void showTable();
 
