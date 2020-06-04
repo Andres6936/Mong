@@ -36,6 +36,33 @@ void App::run()
 
 bool App::verifySignaturePNG()
 {
+	// (decimal) 			 137 80 78 71 13 10 26 10
+	// (hexadecimal) 		  89 50 4e 47 0d 0a 1a 0a
+	// (ASCII C notation) 	\211 P N G \r \n \032 \n
+
+	// This signature both identifies the file as a PNG file
+	// and provides for immediate detection of common
+	// file-transfer problems.
+
+	// The first two bytes distinguish PNG files on
+	// systems that expect the first two bytes to identify the
+	// file type uniquely.
+
+	// The first byte is chosen as a non-ASCII
+	// value to reduce the probability that a text file may be
+	// mis-recognized as a PNG file; also, it catches bad file
+	// transfers that clear bit 7.
+
+	// Bytes two through four name the format.
+
+	// The CR-LF sequence catches bad file transfers
+	// that alter newline sequences.
+
+	// The control-Z character stops file display under MS-DOS.
+
+	// The final line feed checks for the inverse of the CR-LF
+	// translation problem.
+
 	if (dataRaw[0] == std::byte(137) and
 		dataRaw[1] == std::byte(80) and
 		dataRaw[2] == std::byte(78) and
