@@ -9,23 +9,23 @@ using namespace Mong;
 
 CRC::CRC()
 {
-	for (int n = 0; n < table.size(); ++n)
+	for (int i = 0; i < table.size(); ++i)
 	{
-		UInt32 c = static_cast<UInt32>(n);
+		UInt32 c = i << 24;
 
-		for (int k = 0; k < 8; ++k)
+		for (int j = 0; j < 8; ++j)
 		{
-			if (c bitand 1)
+			if (c bitand 0x80'00'00'00)
 			{
-				c = 0xedb88320L xor (c >> 1);
+				c = (c << 1) xor 0x04'C1'1D'B7;
 			}
 			else
 			{
-				c = c >> 1;
+				c = c << 1;
 			}
 		}
 
-		table[n] = c;
+		table[i] = c;
 	}
 }
 
@@ -35,7 +35,7 @@ void CRC::showTable()
 
 	for (const auto& value : table)
 	{
-		std::cout << value << "\n";
+		std::cout << std::hex << value << "\n";
 	}
 
 	std::cout << "\n\n";
