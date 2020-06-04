@@ -59,7 +59,16 @@ ConstIterator Chunk::getIterator() const
 
 bool Chunk::verifyCyclicRedundancyCheck(const CRC& _crc) const
 {
-	const UInt32 hash = _crc.getCyclicRedundancyCheck(data);
+	std::vector<std::byte> buffer;
+
+	for(const auto letter : type)
+	{
+		buffer.push_back(std::byte(letter));
+	}
+
+	buffer.insert(buffer.end(), data.begin(), data.end());
+
+	const UInt32 hash = _crc.getCyclicRedundancyCheck(buffer);
 
 	if (cyclicRedundancyCheck == hash)
 	{
