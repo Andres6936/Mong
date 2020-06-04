@@ -6,7 +6,7 @@
 #include <bit>
 
 #include "Mong/App.hpp"
-#include "Mong/PNGInfo.hpp"
+#include "Mong/Information.hpp"
 
 using namespace Mong;
 
@@ -153,7 +153,7 @@ UInt32 App::readUInt32From4Bytes(ConstIterator _it)
 
 void App::readImageHeader()
 {
-	PNGInfo info(chunks.at(0));
+	Information info(chunks.at(0));
 
 	if (info.areVariantsSatisfied())
 	{

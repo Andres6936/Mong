@@ -9,7 +9,7 @@ CPMAddPackage(
         GITHUB_REPOSITORY Andres6936/Cup
 )
 
-ADD_EXECUTABLE(Mong Source/Main.cpp Source/App.cpp Source/Chunk.cpp Source/PNGInfo.cpp)
+ADD_EXECUTABLE(Mong Source/Main.cpp Source/App.cpp Source/Chunk.cpp Source/Information.cpp)
 TARGET_INCLUDE_DIRECTORIES(Mong
         PUBLIC
             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include>

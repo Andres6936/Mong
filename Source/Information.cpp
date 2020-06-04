@@ -1,13 +1,13 @@
 // Joan Andrés (@Andres6936) Github.
 
-#include "Mong/PNGInfo.hpp"
+#include "Mong/Information.hpp"
 
 #include <cstddef>
 #include <bit>
 
 using namespace Mong;
 
-PNGInfo::PNGInfo(const Chunk& _chunk) : IHDR(_chunk)
+Information::Information(const Chunk& _chunk) : IHDR(_chunk)
 {
 	// Iterator for read the data of chunk
 	ConstIterator it = IHDR.getIterator();
@@ -41,7 +41,7 @@ PNGInfo::PNGInfo(const Chunk& _chunk) : IHDR(_chunk)
 	// 13 Bytes in total reads.
 }
 
-UInt32 PNGInfo::readUInt32From4Bytes(ConstIterator _it)
+UInt32 Information::readUInt32From4Bytes(ConstIterator _it)
 {
 	// Read the 4 bytes
 	UInt8 byte1 = std::to_integer<UInt8>(*(_it + 0));
@@ -67,12 +67,12 @@ UInt32 PNGInfo::readUInt32From4Bytes(ConstIterator _it)
 	return result;
 }
 
-UInt8 PNGInfo::readUInt8FromByte(ConstIterator _it)
+UInt8 Information::readUInt8FromByte(ConstIterator _it)
 {
 	return std::to_integer<UInt8>(*_it);
 }
 
-bool PNGInfo::areVariantsSatisfied()
+bool Information::areVariantsSatisfied()
 {
 	if (isBitDepthValueValid() and isColorTypeValueValid())
 	{
@@ -103,7 +103,7 @@ bool PNGInfo::areVariantsSatisfied()
 	return false;
 }
 
-bool PNGInfo::isBitDepthValueValid()
+bool Information::isBitDepthValueValid()
 {
 	switch (bitDepth)
 	{
@@ -118,7 +118,7 @@ bool PNGInfo::isBitDepthValueValid()
 	}
 }
 
-bool PNGInfo::isColorTypeValueValid()
+bool Information::isColorTypeValueValid()
 {
 	switch (colorType)
 	{
@@ -133,7 +133,7 @@ bool PNGInfo::isColorTypeValueValid()
 	}
 }
 
-bool PNGInfo::isEachPixelGrayscaleSample()
+bool Information::isEachPixelGrayscaleSample()
 {
 	switch (bitDepth)
 	{
@@ -148,7 +148,7 @@ bool PNGInfo::isEachPixelGrayscaleSample()
 	}
 }
 
-bool PNGInfo::isEachPixelRGBTriple()
+bool Information::isEachPixelRGBTriple()
 {
 	switch (bitDepth)
 	{
@@ -160,7 +160,7 @@ bool PNGInfo::isEachPixelRGBTriple()
 	}
 }
 
-bool PNGInfo::isEachPixelPaletteIndex()
+bool Information::isEachPixelPaletteIndex()
 {
 	switch (bitDepth)
 	{
@@ -174,7 +174,7 @@ bool PNGInfo::isEachPixelPaletteIndex()
 	}
 }
 
-bool PNGInfo::isEachPixelGrayscaleSampleFollowedAlphaSample()
+bool Information::isEachPixelGrayscaleSampleFollowedAlphaSample()
 {
 	switch (bitDepth)
 	{
@@ -186,7 +186,7 @@ bool PNGInfo::isEachPixelGrayscaleSampleFollowedAlphaSample()
 	}
 }
 
-bool PNGInfo::isEachPixelRGBTripleFollowedAlphaSample()
+bool Information::isEachPixelRGBTripleFollowedAlphaSample()
 {
 	switch (bitDepth)
 	{

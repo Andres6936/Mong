@@ -1,7 +1,7 @@
 // Joan Andrés (@Andres6936) Github.
 
-#ifndef MONG_PNGINFO_HPP
-#define MONG_PNGINFO_HPP
+#ifndef MONG_INFORMATION_HPP
+#define MONG_INFORMATION_HPP
 
 #include "Chunk.hpp"
 #include "Definitions.hpp"
@@ -9,7 +9,7 @@
 namespace Mong
 {
 
-	class PNGInfo
+	class Information
 	{
 
 	private:
@@ -100,7 +100,7 @@ namespace Mong
 
 	public:
 
-		PNGInfo(const Chunk& _chunk);
+		Information(const Chunk& _chunk);
 
 		bool areVariantsSatisfied();
 
@@ -112,4 +112,4 @@ namespace Mong
 
 }
 
-#endif //MONG_PNGINFO_HPP
+#endif //MONG_INFORMATION_HPP
