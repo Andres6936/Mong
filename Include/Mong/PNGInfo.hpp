@@ -61,7 +61,23 @@ namespace Mong
 		 * if it holds an unrecognized code.
 		 */
 		UInt8 compressionMethod = 0;
+
+		/**
+		 * Filter method is a single-byte integer that indicates
+		 * the preprocessing method applied to the image data before
+		 * compression. At present, only filter method 0 (adaptive
+		 * filtering with five basic filter types) is defined. As
+		 * with the compression method field, decoders must check
+		 * this byte and report an error if it holds an unrecognized
+		 * code.
+		 */
 		UInt8 filterMethod = 0;
+
+		/**
+		 * Interlace method is a single-byte integer that indicates
+		 * the transmission order of the image data. Two values are
+		 * currently defined: 0 (no interlace) or 1 (Adam7 interlace).
+		 */
 		UInt8 interlaceMethod = 0;
 
 		const Chunk IHDR;
