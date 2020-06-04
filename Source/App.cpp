@@ -154,4 +154,11 @@ UInt32 App::readUInt32From4Bytes(ConstIterator _it)
 void App::readImageHeader()
 {
 	PNGInfo info(chunks.at(0));
+
+	if (info.areVariantsSatisfied())
+	{
+		std::cout << "Yes, variant satisfied.\n";
+	}
+
+	std::cout << "No, variant unsatisfied.\n";
 }

@@ -71,3 +71,129 @@ UInt8 PNGInfo::readUInt8FromByte(ConstIterator _it)
 {
 	return std::to_integer<UInt8>(*_it);
 }
+
+bool PNGInfo::areVariantsSatisfied()
+{
+	if (isBitDepthValueValid() and isColorTypeValueValid())
+	{
+		// Bit depth restrictions for each color type are imposed
+		// to simplify implementations and to prohibit combinations
+		// that do not compress well. Decoders must support all valid
+		// combinations of bit depth and color type.
+		// The allowed combinations are:
+
+		switch (colorType)
+		{
+		case 0:
+			return isEachPixelGrayscaleSample();
+		case 2:
+			return isEachPixelRGBTriple();
+		case 3:
+			// Condition: A PLTE chunk must appear.
+			return isEachPixelPaletteIndex();
+		case 4:
+			return isEachPixelGrayscaleSampleFollowedAlphaSample();
+		case 6:
+			return isEachPixelRGBTripleFollowedAlphaSample();
+		default:
+			return false;
+		}
+	}
+
+	return false;
+}
+
+bool PNGInfo::isBitDepthValueValid()
+{
+	switch (bitDepth)
+	{
+	case 1:
+	case 2:
+	case 4:
+	case 8:
+	case 16:
+		return true;
+	default:
+		return false;
+	}
+}
+
+bool PNGInfo::isColorTypeValueValid()
+{
+	switch (colorType)
+	{
+	case 0:
+	case 2:
+	case 3:
+	case 4:
+	case 6:
+		return true;
+	default:
+		return false;
+	}
+}
+
+bool PNGInfo::isEachPixelGrayscaleSample()
+{
+	switch (bitDepth)
+	{
+	case 1:
+	case 2:
+	case 4:
+	case 8:
+	case 16:
+		return true;
+	default:
+		return false;
+	}
+}
+
+bool PNGInfo::isEachPixelRGBTriple()
+{
+	switch (bitDepth)
+	{
+	case 8:
+	case 16:
+		return true;
+	default:
+		return false;
+	}
+}
+
+bool PNGInfo::isEachPixelPaletteIndex()
+{
+	switch (bitDepth)
+	{
+	case 1:
+	case 2:
+	case 4:
+	case 8:
+		return true;
+	default:
+		return false;
+	}
+}
+
+bool PNGInfo::isEachPixelGrayscaleSampleFollowedAlphaSample()
+{
+	switch (bitDepth)
+	{
+	case 8:
+	case 16:
+		return true;
+	default:
+		return false;
+	}
+}
+
+bool PNGInfo::isEachPixelRGBTripleFollowedAlphaSample()
+{
+	switch (bitDepth)
+	{
+	case 8:
+	case 16:
+		return true;
+	default:
+		return false;
+	}
+}

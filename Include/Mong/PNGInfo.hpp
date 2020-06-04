@@ -54,9 +54,27 @@ namespace Mong
 
 		const Chunk IHDR;
 
+		// Methods Variant
+
+		bool isBitDepthValueValid();
+
+		bool isColorTypeValueValid();
+
+		bool isEachPixelGrayscaleSample();
+
+		bool isEachPixelRGBTriple();
+
+		bool isEachPixelPaletteIndex();
+
+		bool isEachPixelGrayscaleSampleFollowedAlphaSample();
+
+		bool isEachPixelRGBTripleFollowedAlphaSample();
+
 	public:
 
 		PNGInfo(const Chunk& _chunk);
+
+		bool areVariantsSatisfied();
 
 		UInt32 readUInt32From4Bytes(ConstIterator _it);
 
