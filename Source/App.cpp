@@ -206,8 +206,6 @@ bool App::verifyCRCForAllChunks()
 {
 	CRC crc;
 
-	crc.showTable();
-
 	for (const auto& chunk : chunks)
 	{
 		if (chunk.verifyCyclicRedundancyCheck(crc))

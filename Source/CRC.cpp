@@ -63,18 +63,3 @@ UInt32 CRC::getCyclicRedundancyCheck(const std::vector<std::byte>& _buffer) cons
 
 	return c xor 0xFF'FF'FF'FF;
 }
-
-bool CRC::verifyInvariants() const
-{
-	// 32 Bytes of Zeros
-
-	std::vector<std::byte> buffer;
-
-	buffer.push_back(std::byte('a'));
-
-	UInt32 bytesZeros = getCyclicRedundancyCheck(buffer);
-
-	std::cout << std::hex << bytesZeros << "\n";
-
-	return false;
-}

@@ -37,10 +37,6 @@ namespace Mong
 
 		CRC();
 
-		// Methods Invariant
-
-		bool verifyInvariants() const;
-
 		// Methods
 
 		/**
