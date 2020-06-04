@@ -52,5 +52,5 @@ UInt64 CRC::getCyclicRedundancyCheck(const std::vector<std::byte>& _buffer) cons
 		c = table.at((c xor byte) bitand 0xFF) xor (c >> 8);
 	}
 
-	return c;
+	return c xor static_cast<UInt64>(0xFF'FF'FF'FF);
 }
