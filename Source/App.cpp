@@ -32,6 +32,15 @@ void App::run()
 		readChunksFromDataRaw();
 	}
 
+	if (verifyChunkOrdering())
+	{
+		std::cout << "The order of chunks is correct.\n";
+	}
+	else
+	{
+		std::cout << "The order of chunks is incorrect.\n";
+	}
+
 	if (verifyCRCForAllChunks())
 	{
 		std::cout << "All Chunk with Cyclic Redundancy Check (CRC) Correct.\n";
@@ -216,6 +225,25 @@ bool App::verifyCRCForAllChunks()
 		{
 			return false;
 		}
+	}
+
+	return true;
+}
+
+bool App::verifyChunkOrdering()
+{
+	// Standard: The IDHR should be the first chunk.
+	if (not chunks.at(0).equalsTypeTo("IHDR"))
+	{
+		return false;
+	}
+
+	// Rest 1 because begin to count from 0
+	const auto LAST_POSITION = chunks.size() - 1;
+
+	if (not chunks.at(LAST_POSITION).equalsTypeTo("IEND"))
+	{
+		return false;
 	}
 
 	return true;

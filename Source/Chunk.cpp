@@ -103,3 +103,8 @@ bool Chunk::verifyCyclicRedundancyCheck(const CRC& _crc) const
 		return false;
 	}
 }
+
+bool Chunk::equalsTypeTo(std::string_view _type)
+{
+	return type == _type;
+}

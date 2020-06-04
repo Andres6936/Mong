@@ -39,6 +39,8 @@ namespace Mong
 		 */
 		bool verifySignaturePNG();
 
+		bool verifyChunkOrdering();
+
 		bool verifyCRCForAllChunks();
 
 		void readChunksFromDataRaw();

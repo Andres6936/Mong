@@ -8,6 +8,7 @@
 
 #include <vector>
 #include <string>
+#include <string_view>
 
 namespace Mong
 {
@@ -82,6 +83,15 @@ namespace Mong
 		bool verifyCyclicRedundancyCheck(const CRC& _crc) const;
 
 		void determineProperties();
+
+		/**
+		 * Determine if the type of chunk is equals to type
+		 * passed for parameter.
+		 *
+		 * @param _type The type to verify.
+		 * @return True if the types of chunks are equals.
+		 */
+		bool equalsTypeTo(std::string_view _type);
 
 		// Getter
 
