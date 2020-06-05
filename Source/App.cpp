@@ -249,3 +249,30 @@ bool App::verifyChunkOrdering()
 
 	return true;
 }
+
+std::optional<App::ConstIteratorChunk> App::findChunkType(std::string_view _type)
+{
+	// Search from the begin to end of vector
+	ConstIteratorChunk it = std::find_if(chunks.cbegin(), chunks.cend(),
+			// The element that coincide with we criteria
+			// In this case, that the chunk will be of type pass for parameter
+			[&](const Chunk& _chunk){return _chunk.equalsTypeTo(_type);});
+
+	// If std::find_if not found the element,
+	// it return a iterator a the last position,
+	// you can think that the last position is
+	// a element valid, however we have as convention
+	// that the last element is a chunk of type IEND
+	// that not is used in the program more that for
+	// mark the end of png
+	if (it == chunks.cend())
+	{
+		// Element not found, return null
+		return std::nullopt;
+	}
+	else
+	{
+		// Deduce of template C++17
+		return std::optional{it};
+	}
+}

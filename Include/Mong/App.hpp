@@ -7,6 +7,10 @@
 
 #include "Chunk.hpp"
 
+#include <vector>
+#include <optional>
+#include <string_view>
+
 namespace Mong
 {
 
@@ -16,6 +20,10 @@ namespace Mong
 	{
 
 	private:
+
+		// Definitions
+
+		using ConstIteratorChunk = std::vector<Chunk>::const_iterator;
 
 		// Fields
 
@@ -64,6 +72,8 @@ namespace Mong
 		UInt32 getCyclicRedundancyCheck(ConstIterator _it);
 
 		std::string getTypeChunk(ConstIterator _it);
+
+		std::optional<ConstIteratorChunk> findChunkType(std::string_view _type);
 
 	public:
 

@@ -91,7 +91,7 @@ namespace Mong
 		 * @param _type The type to verify.
 		 * @return True if the types of chunks are equals.
 		 */
-		bool equalsTypeTo(std::string_view _type);
+		bool equalsTypeTo(std::string_view _type) const;
 
 		// Getter
 
