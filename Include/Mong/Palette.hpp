@@ -3,13 +3,21 @@
 #ifndef MONG_PALETTE_HPP
 #define MONG_PALETTE_HPP
 
+#include "Chunk.hpp"
+
 namespace Mong
 {
 
 	class Palette
 	{
 
+	private:
+
+		const Chunk PLTE;
+
 	public:
+
+		Palette(const Chunk& _chunk);
 
 	};
 

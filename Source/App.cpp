@@ -7,6 +7,7 @@
 
 #include "Mong/CRC.hpp"
 #include "Mong/App.hpp"
+#include "Mong/Palette.hpp"
 #include "Mong/Information.hpp"
 
 using namespace Mong;
@@ -274,5 +275,31 @@ std::optional<App::ConstIteratorChunk> App::findChunkType(std::string_view _type
 	{
 		// Deduce of template C++17
 		return std::optional{it};
+	}
+}
+
+void App::readImagePalette()
+{
+	std::optional<ConstIteratorChunk> it = findChunkType("PLTE");
+
+	if (it)
+	{
+		// Remember, we use a optional, the way of get the value
+		// in a std::optional is of two ways: the first is using
+		// the operator * and the second is using the method value()
+
+		// Remember, the optional store a reference valid to iterator,
+		// and the way of get the value to which the iterator point is
+		// with the operator *
+
+		// So, that is valid two syntax: *(it.value()) and *(*it)
+		// Which is more clear?
+
+		Palette palette(*(it.value()));
+	}
+	else
+	{
+		// Not exist chunk of type PLTE
+		return;
 	}
 }
