@@ -241,6 +241,7 @@ bool App::verifyChunkOrdering()
 	// Rest 1 because begin to count from 0
 	const auto LAST_POSITION = chunks.size() - 1;
 
+	// Standard: The IEDN should be the last chunk.
 	if (not chunks.at(LAST_POSITION).equalsTypeTo("IEND"))
 	{
 		return false;
