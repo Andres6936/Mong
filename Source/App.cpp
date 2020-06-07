@@ -52,6 +52,7 @@ void App::run()
 	}
 
 	readImageHeader();
+	readImagePalette();
 }
 
 bool App::verifySignaturePNG()

@@ -5,17 +5,34 @@
 
 #include "Chunk.hpp"
 
+#include <Cup/Object/Color.hpp>
+#include <vector>
+
 namespace Mong
 {
+
+	using namespace Cup::Object;
 
 	class Palette
 	{
 
 	private:
 
+		// Fields
+
+		std::vector<Color> entries;
+
+		// Const Fields
+
 		const Chunk PLTE;
 
+		// Methods Invariant
+
+		bool verifyDivisibleBy3();
+
 	public:
+
+		// Construct
 
 		Palette(const Chunk& _chunk);
 

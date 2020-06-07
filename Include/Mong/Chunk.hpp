@@ -95,6 +95,8 @@ namespace Mong
 
 		// Getter
 
+		UInt32 getLength() const;
+
 		ConstIterator getIterator() const;
 
 		// Setters

@@ -108,3 +108,8 @@ bool Chunk::equalsTypeTo(std::string_view _type) const
 {
 	return type == _type;
 }
+
+UInt32 Chunk::getLength() const
+{
+	return length;
+}
