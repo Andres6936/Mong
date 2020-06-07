@@ -9,6 +9,12 @@ CPMAddPackage(
         GITHUB_REPOSITORY Andres6936/Cup
 )
 
+CPMAddPackage(
+        NAME Cup.Object
+        VERSION 2020.0505
+        GITHUB_REPOSITORY Andres6936/Cup.Object
+)
+
 ADD_EXECUTABLE(Mong Source/Main.cpp Source/App.cpp Source/Chunk.cpp Source/Information.cpp Source/CRC.cpp Source/Palette.cpp)
 TARGET_INCLUDE_DIRECTORIES(Mong
         PUBLIC
@@ -16,3 +22,4 @@ TARGET_INCLUDE_DIRECTORIES(Mong
             $<INSTALL_INTERFACE:Include/>)
 SET_TARGET_PROPERTIES(Mong PROPERTIES CXX_STANDARD 20)
 TARGET_LINK_LIBRARIES(Mong PRIVATE Cup)
+TARGET_LINK_LIBRARIES(Mong PRIVATE Cup.Object)
