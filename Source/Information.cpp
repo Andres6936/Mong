@@ -10,7 +10,7 @@ using namespace Mong;
 Information::Information(const Chunk& _chunk) : IHDR(_chunk)
 {
 	// Iterator for read the data of chunk
-	ConstIterator it = IHDR.getIterator();
+	ConstIterator it = IHDR.getIteratorBegin();
 
 	width = readUInt32From4Bytes(it);
 	// Advance the iterator 4 bytes
