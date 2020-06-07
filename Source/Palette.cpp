@@ -11,7 +11,6 @@ Palette::Palette(const Chunk& _chunk) : PLTE(_chunk)
 {
 	if (verifyDivisibleBy3())
 	{
-		std::cout << "The Chunk PLTE is divisible by 3.\n";
 		// According to standard: The PLTE chunk contains from
 		// 1 to 256 palette entries, each a three-byte series.
 		// The number of entries is determined from the chunk
@@ -24,9 +23,9 @@ Palette::Palette(const Chunk& _chunk) : PLTE(_chunk)
 		{
 			// Read the three bytes of data, that represent
 			// the component red, green and blue
-			color.setRed(std::to_integer<UInt8>(*(it + 0)));
-			color.setGreen(std::to_integer<UInt8>(*(it + 1)));
-			color.setBlue(std::to_integer<UInt8>(*(it + 2)));
+			color.setRed(std::to_integer<UInt8>(*(it + 1)));
+			color.setGreen(std::to_integer<UInt8>(*(it + 2)));
+			color.setBlue(std::to_integer<UInt8>(*(it + 3)));
 
 			// Advance 3 bytes
 			it = std::next(it, 3);
@@ -36,7 +35,7 @@ Palette::Palette(const Chunk& _chunk) : PLTE(_chunk)
 	}
 	else
 	{
-		std::cout << "Error: The chunk PLTE not is divisible by 3.\n";
+		std::cerr << "Error: The chunk PLTE not is divisible by 3.\n";
 	}
 }
 
