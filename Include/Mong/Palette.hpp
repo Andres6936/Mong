@@ -36,6 +36,10 @@ namespace Mong
 
 		Palette(const Chunk& _chunk);
 
+		// Methods
+
+		void showEntries();
+
 	};
 
 }

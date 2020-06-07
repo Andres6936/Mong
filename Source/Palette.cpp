@@ -29,8 +29,10 @@ Palette::Palette(const Chunk& _chunk) : PLTE(_chunk)
 			color.setBlue(std::to_integer<UInt8>(*(it + 2)));
 
 			// Advance 3 bytes
-			std::next(it, 3);
+			it = std::next(it, 3);
 		}
+
+		std::cout << "Total of entries: " << entries.size() << "\n";
 	}
 	else
 	{
@@ -47,5 +49,13 @@ bool Palette::verifyDivisibleBy3()
 	else
 	{
 		return false;
+	}
+}
+
+void Palette::showEntries()
+{
+	for (const Color& color: entries)
+	{
+		std::cout << "R: " << (int) color.getRed() << " G: " << (int) color.getGreen() << " B: " << (int) color.getBlue() << "\n";
 	}
 }
