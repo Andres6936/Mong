@@ -15,7 +15,8 @@ CPMAddPackage(
         GITHUB_REPOSITORY Andres6936/Cup.Object
 )
 
-ADD_EXECUTABLE(Mong Source/Main.cpp Source/App.cpp Source/Chunk.cpp Source/Information.cpp Source/CRC.cpp Source/Palette.cpp)
+ADD_EXECUTABLE(Mong Source/Main.cpp Source/App.cpp Source/Chunk.cpp Source/Information.cpp Source/CRC.cpp Source/Palette.cpp
+        Source/Data.cpp)
 TARGET_INCLUDE_DIRECTORIES(Mong
         PUBLIC
             $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include>

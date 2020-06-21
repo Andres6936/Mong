@@ -7,6 +7,7 @@
 
 #include "Mong/CRC.hpp"
 #include "Mong/App.hpp"
+#include "Mong/Data.hpp"
 #include "Mong/Palette.hpp"
 #include "Mong/Information.hpp"
 
@@ -51,8 +52,9 @@ void App::run()
 		std::cout << "Error with Cyclic Redundancy Check (CRC).\n";
 	}
 
-	readImageHeader();
+	const Information info = readImageHeader();
 	readImagePalette();
+	readImageData(info);
 }
 
 bool App::verifySignaturePNG()
@@ -199,7 +201,7 @@ UInt32 App::readUInt32From4Bytes(ConstIterator _it)
 	return result;
 }
 
-void App::readImageHeader()
+Information App::readImageHeader()
 {
 	Information info(chunks.at(0));
 
@@ -211,6 +213,8 @@ void App::readImageHeader()
 	{
 		std::cout << "No, variant unsatisfied.\n";
 	}
+
+	return info;
 }
 
 bool App::verifyCRCForAllChunks()
@@ -302,5 +306,25 @@ void App::readImagePalette()
 	{
 		// Not exist chunk of type PLTE
 		return;
+	}
+}
+
+void App::readImageData(const Information& _info)
+{
+	std::optional<ConstIteratorChunk> it = findChunkType("IDAT");
+
+	if (it)
+	{
+		std::cout << "Process IDAT Chunck.\n";
+
+		// See documentation internal of method readImagePalette
+		// for a explain of as des-reference a optional and a
+		// iterator.
+
+		Data data(*(it.value()), _info);
+	}
+	else
+	{
+		std::cerr << "Chunk of type IDAT not exist.\n"; return;
 	}
 }

@@ -6,6 +6,7 @@
 #include <Cup/Properties/Readable.h>
 
 #include "Chunk.hpp"
+#include "Information.hpp"
 
 #include <vector>
 #include <optional>
@@ -53,9 +54,11 @@ namespace Mong
 
 		void readChunksFromDataRaw();
 
-		void readImageHeader();
-
 		void readImagePalette();
+
+		void readImageData(const Information& _info);
+
+		Information readImageHeader();
 
 		/**
 		 * Read 4 bytes of 8 bits from a iterator,
