@@ -3,7 +3,7 @@
 // Copyright (c) 2011 Stephan Brumme. All rights reserved.
 //
 
-#include "Hash.h"
+#include "Stephan/Hash.h"
 #include <cassert>
 
 namespace Hash

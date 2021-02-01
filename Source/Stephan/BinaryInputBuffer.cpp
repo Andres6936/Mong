@@ -3,7 +3,7 @@
 // Copyright (c) 2011 Stephan Brumme. All rights reserved.
 //
 
-#include "BinaryInputBuffer.h"
+#include "Stephan/BinaryInputBuffer.h"
 
 #pragma warning (disable: 4996) // fopen is unsafe
 #include <cassert>

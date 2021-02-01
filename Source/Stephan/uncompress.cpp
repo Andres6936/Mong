@@ -3,7 +3,7 @@
 // Copyright (c) 2011 Stephan Brumme. All rights reserved.
 //
 
-#include "Inflate.h"
+#include "Stephan/Inflate.h"
 #include <iostream>
 #include <fstream>
 #include <ctime>

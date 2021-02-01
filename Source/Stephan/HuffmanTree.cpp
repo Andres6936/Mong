@@ -3,8 +3,8 @@
 // Copyright (c) 2011 Stephan Brumme. All rights reserved.
 //
 
-#include "HuffmanTree.h"
-#include "Hash.h" // Bits::reverse
+#include "Stephan/HuffmanTree.h"
+#include "Stephan/Hash.h" // Bits::reverse
 #include <cassert>
 #include <algorithm> // std::min / std::max
 

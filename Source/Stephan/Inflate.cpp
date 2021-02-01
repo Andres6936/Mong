@@ -3,9 +3,9 @@
 // Copyright (c) 2011 Stephan Brumme. All rights reserved.
 //
 
-#include "Inflate.h"
-#include "BinaryInputBuffer.h"
-#include "Hash.h"
+#include "Stephan/Inflate.h"
+#include "Stephan/BinaryInputBuffer.h"
+#include "Stephan/Hash.h"
 
 #include <cassert>
 
