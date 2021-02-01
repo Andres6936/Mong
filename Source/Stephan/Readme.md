@@ -22,3 +22,21 @@ with Visual C++ and GCC (older version should be fine, too).
 
 If you encounter any bugs/problems or have ideas for improving future versions,
 please write me an email: create@stephan-brumme.com
+
+### Code Structure
+
+The main class Inflate, which derives from std::vector<unsigned char> contains
+the DEFLATE decompression algorithm, accesses three helper classes: 
+BinaryInputBuffer, HuffmanTree and Hash:
+
+- BinaryInputBuffer steps bitwise through a file or a memory buffer
+- HuffmanTree provides a fast Huffman tree data structure, optimized for DEFLATE
+- Hash computes the CRC32 hash (see here for more information)
+
+These three helper classes are completely independent of each other. They have 
+simple #includes such as string, vector and fstream.
+
+However, you don't need to worry about them. They are automatically included by
+Inflate.
+
+Copyright to [Stephan Brumme](https://create.stephan-brumme.com/deflate-decoder/)
