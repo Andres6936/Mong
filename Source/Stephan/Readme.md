@@ -5,8 +5,9 @@
 
 Everyone knows the widespread ZIP file format. Some Windows users may have never
 heard of GZIP, but all Unix users did. 99% percent of all ZIPs are encoded with 
-the so-called DEFLATE algorithm, specified as RFC 1951. The same holds true for 
-PNG images, some PDFs, compressed HTTP data transfer and many more.
+the so-called DEFLATE algorithm, specified as [RFC 1951](http://www.ietf.org/rfc/rfc1951.txt).
+The same holds true for PNG images, some PDFs, compressed HTTP data transfer and
+many more.
 
 I wanted to have a C++ implementation without strange dependencies and weird
 pointer arithmentic. I wanted something like this:
@@ -31,7 +32,8 @@ BinaryInputBuffer, HuffmanTree and Hash:
 
 - BinaryInputBuffer steps bitwise through a file or a memory buffer
 - HuffmanTree provides a fast Huffman tree data structure, optimized for DEFLATE
-- Hash computes the CRC32 hash (see here for more information)
+- Hash computes the CRC32 [hash](https://create.stephan-brumme.com/crc32/) 
+  (see here for more information)
 
 These three helper classes are completely independent of each other. They have 
 simple #includes such as string, vector and fstream.
