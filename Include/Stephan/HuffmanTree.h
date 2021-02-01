@@ -41,7 +41,7 @@ public:
   /// max. bits per code
   static const NumBits MaxCodeLength = 15;
   /// default max. bit length of instant lookup codes
-  static const NumBits InstantMaxBit = 10;
+  inline static const NumBits InstantMaxBit = 10;
   /// marks end of a block
   static const Code    EndOfBlock    = 256;
 
