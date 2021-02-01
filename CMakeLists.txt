@@ -1,5 +1,6 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.16)
-PROJECT(Mong)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.14)
+
+PROJECT(Mong LANGUAGES CXX)
 
 Include(CMakeModules/CPM.cmake)
 
@@ -15,12 +16,16 @@ CPMAddPackage(
         GITHUB_REPOSITORY Andres6936/Cup.Object
 )
 
-ADD_EXECUTABLE(Mong Source/Main.cpp Source/App.cpp Source/Chunk.cpp Source/Information.cpp Source/CRC.cpp Source/Palette.cpp
-        Source/Data.cpp)
-TARGET_INCLUDE_DIRECTORIES(Mong
-        PUBLIC
-            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include>
-            $<INSTALL_INTERFACE:Include/>)
+ADD_EXECUTABLE(Mong
+        Source/Main.cpp
+        Source/App.cpp
+        Source/Chunk.cpp
+        Source/Information.cpp
+        Source/CRC.cpp
+        Source/Palette.cpp
+        Source/Data.cpp
+        )
+TARGET_INCLUDE_DIRECTORIES(Mong PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include>)
 SET_TARGET_PROPERTIES(Mong PROPERTIES CXX_STANDARD 20)
 TARGET_LINK_LIBRARIES(Mong PRIVATE Cup)
 TARGET_LINK_LIBRARIES(Mong PRIVATE Cup.Object)
